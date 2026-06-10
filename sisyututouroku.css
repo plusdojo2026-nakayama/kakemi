@@ -6,10 +6,11 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: #f5f5f5;
+    background: #fff;
     display: flex;
     justify-content: center;
-    padding: 0;       /* スマホでは余白をなくす */
+    padding: 0;
+    margin: 0;
     min-height: 100dvh;
     align-items: flex-start;
 }
@@ -22,11 +23,14 @@ body {
 }
 .phone-frame {
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
     background: #fff;
-    border-radius: 32px;
-    border: 2px solid #e0c8d8;
+    border-radius: 0;       /* 角丸なし */
+    border: none;           /* 枠線なし */
     overflow: hidden;
+    min-height: 100dvh;     /* 画面の高さいっぱい */
+    display: flex;
+    flex-direction: column;
 }
 
 /* ヘッダー */
@@ -44,8 +48,12 @@ body {
 .content {
     background: #fff;
     padding: 14px 16px 10px;
+    flex: 1; 
 }
-
+/* ナビバーが被らないようにコンテンツに余白 */
+.content {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}
 .label-tag {
     font-size: 11px;
     color: #a06080;
@@ -199,6 +207,12 @@ input[type="date"]:not(:valid) {
     align-items: center;
     padding: 10px 0 12px;
     border-top: 1px solid #f0dcea;
+    position: fixed;        /* 画面下に固定 */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* iPhoneのホームバー分の余白 */
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
 }
 
 .nav-item {
